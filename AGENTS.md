@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Portfolio architecture
+- Keep delivery content in a browser-safe data module and gate ticket links by completion status so future work never links prematurely.
+- Keep the live portfolio on the index route and provide an independent plain-HTML export for the requested single-file delivery; the preview retains TanStack Start.
+- Keep palette and motion styles in the shared CSS and browser-only interactions in mounted effects so SSR remains safe.
