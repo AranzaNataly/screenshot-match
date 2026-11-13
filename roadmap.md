@@ -3,4 +3,5 @@
 - [x] Implementar interações, temas e acessibilidade.
 - [x] Entregar arquivo HTML independente e instruções para novas entregas.
 - [x] Verificar página no computador e em 360 px.
-- [ ] Criar repositório GitHub solicitado — depende de acesso autorizado à conta da usuária.
+- [x] Colocar a capa real no card "Capa do Meu Álbum", com aprendizado e faixas.
+- [ ] Escrever no repositório GitHub (portfolio_nataly / portfolio) — depende de conexão autorizada no Lovable.

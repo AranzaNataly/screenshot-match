@@ -28,10 +28,13 @@ function DeliveryArt({ art }: { art: Delivery['art'] }) {
 
 function DeliveryTicket({ delivery }: { delivery: Delivery }) {
   const url = deliveryLink(delivery);
-  return <article className={`ticket reveal ${url ? '' : 'upcoming'}`}>
-    <div className="ticket-art" aria-hidden="true"><span className="art-label">ARANZANATALY / {delivery.art.toUpperCase()}</span><div className="ticket-art-inner"><DeliveryArt art={delivery.art} /></div><span className="art-index">Nº {delivery.number}</span></div>
-    <div className="ticket-body"><div className="ticket-meta"><span>ENTREGA {delivery.number}</span><span className="status">{delivery.status}</span></div><h3>{delivery.title}</h3><p className="ticket-learning">O que aprendi: {delivery.learning}</p></div>
-    <div className="ticket-footer"><span>{delivery.date}</span>{url ? <a href={url} target="_blank" rel="noreferrer">Ver no GitHub <ArrowUpRight size={12} /></a> : <span className="barcode" aria-hidden="true" />}</div>
+  const cover = delivery.cover;
+  return <article className={`ticket reveal ${url ? '' : 'upcoming'}${cover ? ' has-cover' : ''}`}>
+    {cover ? <a className="ticket-cover" href={cover} target="_blank" rel="noreferrer"><img src={cover} alt={`Capa de ${delivery.title}, criada por Nataly de Souza Arantes`} /></a> : <div className="ticket-art" aria-hidden="true"><span className="art-label">ARANZANATALY / {delivery.art.toUpperCase()}</span><div className="ticket-art-inner"><DeliveryArt art={delivery.art} /></div><span className="art-index">Nº {delivery.number}</span></div>}
+    <div className="ticket-main">
+      <div className="ticket-body"><div className="ticket-meta"><span>ENTREGA {delivery.number}</span><span className="status">{delivery.status}</span></div><h3>{delivery.title}</h3><p className="ticket-learning">O que aprendi: {delivery.learning}</p>{delivery.tracks ? <div className="ticket-tracks-block"><p className="ticket-tracks-title">AS FAIXAS</p><ul className="ticket-tracks">{delivery.tracks.map((track, index) => <li key={track.title}><span>{index + 1}</span><div><strong>{track.title}</strong><em>{track.note}</em></div></li>)}</ul></div> : null}</div>
+      <div className="ticket-footer"><span>{delivery.date}</span>{url ? <a href={url} target="_blank" rel="noreferrer">Ver no GitHub <ArrowUpRight size={12} /></a> : <span className="barcode" aria-hidden="true" />}</div>
+    </div>
   </article>;
 }
 

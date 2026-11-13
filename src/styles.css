@@ -82,7 +82,7 @@ button,a { -webkit-tap-highlight-color: transparent; } button { font: inherit; }
 .github-note { font-size:11px; color:var(--muted-foreground); display:flex; gap:8px; align-items:center; padding-bottom:5px; }
 .ticket-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:22px; }
 .ticket { grid-column:span 2; background:var(--card); border:1px solid var(--border); border-radius:6px; position:relative; overflow:hidden; transition:transform .5s,border-color .5s; }
-.ticket:nth-child(1),.ticket:nth-child(2) { grid-column:span 3; }
+.ticket:nth-child(1),.ticket:nth-child(2),.ticket:nth-child(3),.ticket:nth-child(4),.ticket:nth-child(5) { grid-column:span 3; }
 .ticket:hover { transform:translateY(-5px); border-color:var(--primary); animation:ticket-border .8s linear infinite; }
 @keyframes ticket-border { 0%,100% { border-color:var(--rose); } 33% { border-color:var(--olive); } 66% { border-color:var(--blue); } }
 .ticket-art { height:148px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:var(--soft-rose); border-bottom:1px solid var(--border); }
@@ -106,6 +106,26 @@ button,a { -webkit-tap-highlight-color: transparent; } button { font: inherit; }
 .ticket-footer::before,.ticket-footer::after { content:''; position:absolute; width:17px; height:17px; background:var(--background); border:1px solid var(--border); border-radius:50%; top:-9px; } .ticket-footer::before { left:-9px; } .ticket-footer::after { right:-9px; }
 .barcode { height:16px; width:57px; background:repeating-linear-gradient(90deg,var(--muted-foreground) 0 1px,transparent 1px 3px,var(--muted-foreground) 3px 5px,transparent 5px 7px); opacity:.45; }
 .ticket.upcoming .ticket-art { opacity:.65; } .ticket.upcoming h3 { color:var(--muted-foreground); }
+/* A entrega com capa real ocupa a linha inteira: a capa aparece por inteiro ao lado do texto. */
+.ticket-main { display:contents; }
+.ticket.has-cover { grid-column:span 6; display:grid; grid-template-columns:300px minmax(0,1fr); }
+.ticket.has-cover .ticket-main { display:flex; flex-direction:column; }
+.ticket-cover { display:block; overflow:hidden; border-right:1px solid var(--border); background:var(--secondary); }
+.ticket-cover img { width:100%; height:auto; display:block; }
+.ticket.has-cover .ticket-body { flex:1; display:flex; flex-direction:column; justify-content:center; padding:34px 40px 24px; gap:18px; }
+.ticket.has-cover h3 { font-size:30px; margin-bottom:0; line-height:1.25; }
+.ticket.has-cover .ticket-meta { margin-bottom:0; font-size:10px; }
+.ticket.has-cover .ticket-learning { font-size:17px; line-height:1.9; max-width:640px; border-left:2px solid var(--primary); padding-left:20px; }
+.ticket.has-cover .ticket-footer { margin-top:auto; }
+/* As faixas do álbum aparecem como texto: dentro da capa, em pouco espaço, elas não ficam legíveis. */
+.ticket-tracks-block { max-width:640px; }
+.ticket-tracks-title { font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:1.4px; color:var(--muted-foreground); margin-bottom:11px; }
+.ticket-tracks { display:grid; gap:11px; }
+.ticket-tracks li { display:flex; gap:14px; align-items:baseline; }
+.ticket-tracks li span { font-family:'Space Grotesk',sans-serif; font-size:10px; color:var(--primary); min-width:12px; }
+.ticket-tracks li > div { display:grid; gap:3px; }
+.ticket-tracks strong { font-size:13px; font-weight:500; color:var(--foreground); }
+.ticket-tracks em { font-style:normal; font-size:11px; line-height:1.6; color:var(--muted-foreground); }
 .empty-ticket { grid-column:span 3; min-height:106px; border:1px dashed var(--border); display:flex; align-items:center; padding:22px; gap:18px; border-radius:5px; color:var(--muted-foreground); }
 .empty-ticket h3 { font-size:14px; margin-bottom:5px; } .empty-ticket p { font-size:10px; }
 /* O manifesto completo fica recolhido até a leitura ser solicitada. */
@@ -127,7 +147,8 @@ button,a { -webkit-tap-highlight-color: transparent; } button { font: inherit; }
  .container { padding-inline:22px; } .site-header { height:72px; } .header-inner { gap:10px; } .brand { font-size:16px; gap:5px; flex-shrink:0; } .brand-star { font-size:22px; } .nav-links { display:none; } .header-actions { gap:7px; } .header-actions .outline-action { padding:9px 8px; font-size:9px; gap:5px; } .icon-control { width:30px; height:30px; flex-shrink:0; }
  .hero { min-height:710px; padding:35px 20px 38px; } .hero .eyebrow { font-size:8px; letter-spacing:1.2px; margin-bottom:25px; } .portrait-stage { transform:scale(.9); margin-bottom:13px; } .hero h1 { font-size:43px; line-height:1.15; } .hero-description { font-size:12px; max-width:310px; } .artist-name { margin:17px 0 21px; } .side-note { display:none; } .hero-buttons { gap:10px; } .hero-buttons .outline-action { font-size:11px; padding:12px 15px; } .scroll-note { margin-top:33px; }
  .about-section,.deliveries-section { padding:48px 0; } .about-grid,.manifesto-grid { grid-template-columns:1fr; gap:26px; } .section-title { font-size:30px; } .about-intro { max-width:none; margin:15px 0 19px; } .about-copy { font-size:12px; } .about-foot { font-size:9px; gap:12px; }
- .section-heading { align-items:flex-start; flex-direction:column; gap:15px; } .ticket-grid { grid-template-columns:1fr; gap:20px; } .ticket,.ticket:nth-child(1),.ticket:nth-child(2),.empty-ticket { grid-column:span 1; } .ticket .ticket-art,.ticket:nth-child(1) .ticket-art,.ticket:nth-child(2) .ticket-art { height:170px; } .ticket h3 { font-size:18px; } .empty-ticket { min-height:95px; }
+ .section-heading { align-items:flex-start; flex-direction:column; gap:15px; } .ticket-grid { grid-template-columns:1fr; gap:20px; } .ticket,.ticket:nth-child(1),.ticket:nth-child(2),.ticket:nth-child(3),.ticket:nth-child(4),.ticket:nth-child(5),.ticket.has-cover,.empty-ticket { grid-column:span 1; } .ticket .ticket-art,.ticket:nth-child(1) .ticket-art,.ticket:nth-child(2) .ticket-art { height:170px; } .ticket h3 { font-size:18px; } .empty-ticket { min-height:95px; }
+ .ticket.has-cover { grid-template-columns:1fr; } .ticket-cover { border-right:0; border-bottom:1px solid var(--border); padding:18px; display:grid; place-items:center; } .ticket-cover img { width:auto; max-width:100%; max-height:420px; } .ticket.has-cover .ticket-body { padding:19px 21px 16px; } .ticket.has-cover .ticket-learning { font-size:11px; }
  .manifesto-section { padding:45px 0; } .manifesto-title { font-size:30px; } .manifesto-copy { font-size:12px; } .contact-section { padding:45px 0 28px; } .contact-top { flex-direction:column; align-items:flex-start; gap:23px; padding-bottom:28px; } .contact-title { font-size:29px; } .contact-links { flex-wrap:wrap; } .contact-links .outline-action { font-size:10px; padding:11px 14px; } .footer-bottom { font-size:9px; line-height:1.7; }
 }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } .motion-ready .reveal { opacity:1; transform:none; } }

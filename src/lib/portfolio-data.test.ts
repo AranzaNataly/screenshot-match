@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { deliveryLink, type Delivery } from './portfolio-data';
+import { deliveryLink, deliveries, type Delivery } from './portfolio-data';
 
 describe('Permissão de links das entregas', () => {
   const item: Delivery = { number: '01', title: 'Capa do Meu Álbum', date: '[PREENCHER]', learning: '[PREENCHER]', status: 'Em breve', art: 'album', url: 'https://github.com/AranzaNataly/portfolio' };
@@ -8,5 +8,10 @@ describe('Permissão de links das entregas', () => {
   });
   it('permite abrir a pasta de uma entrega Concluída', () => {
     expect(deliveryLink({ ...item, status: 'Concluída' })).toBe('https://github.com/AranzaNataly/portfolio');
+  });
+  it('guarda a capa e o aprendizado ditados para Capa do Meu Álbum', () => {
+    const album = deliveries.find(delivery => delivery.title === 'Capa do Meu Álbum');
+    expect(album?.learning).toBe('Através dessa atividade, pude compreender um pouco mais sobre mim.');
+    expect(album?.cover).toBeTruthy();
   });
 });

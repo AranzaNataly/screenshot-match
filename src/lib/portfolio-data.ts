@@ -1,5 +1,8 @@
+import capaDoAlbum from '@/assets/capa-do-album.png.asset.json';
+
 // Acrescente um objeto nesta lista para criar uma nova entrega.
 // Preencha data, aprendizado e URL; só então marque como concluída.
+// "cover" é opcional: use a URL de uma imagem real sua para trocar o desenho pelo trabalho.
 export type Delivery = {
   number: string;
   title: string;
@@ -7,11 +10,19 @@ export type Delivery = {
   learning: string;
   status: 'Concluída' | 'Em breve';
   url?: string;
+  cover?: string;
+  tracks?: { title: string; note: string }[];
   art: 'album' | 'dashboard' | 'tree' | 'anchor' | 'manifesto';
 };
 
 export const deliveries: Delivery[] = [
-  { number: '01', title: 'Capa do Meu Álbum', date: '[PREENCHER]', learning: '[PREENCHER]', status: 'Em breve', art: 'album' },
+  { number: '01', title: 'Capa do Meu Álbum', date: '[PREENCHER]', learning: 'Através dessa atividade, pude compreender um pouco mais sobre mim.', status: 'Concluída', url: 'https://github.com/AranzaNataly/portfolio', cover: capaDoAlbum.url, art: 'album', tracks: [
+    { title: 'O Invisível Também Me Guia', note: 'A fé e a confiança no que vai além do que posso ver ou provar.' },
+    { title: 'O Que Fica Quando Ninguém Vê', note: 'Lealdade e sinceridade como caráter, mesmo longe de qualquer olhar.' },
+    { title: 'Transformar Pontos em Possibilidades', note: 'Criatividade, curiosidade e tecnologia ligando ideias e criando coisas novas.' },
+    { title: 'E Se o Horizonte Não Bastar?', note: 'O medo do desconhecido, com vulnerabilidade e esperança lado a lado.' },
+    { title: 'Além do Mapa', note: 'Carreira, independência, orgulho da família e lugares novos, num futuro ainda por desenhar.' },
+  ] },
   { number: '02', title: 'Dashboard Quem Sou Eu', date: '[PREENCHER]', learning: '[PREENCHER]', status: 'Em breve', art: 'dashboard' },
   { number: '03', title: 'Árvore das Profissões 2.0', date: '[PREENCHER]', learning: '[PREENCHER]', status: 'Em breve', art: 'tree' },
   { number: '04', title: 'Âncoras de Carreira', date: '[PREENCHER]', learning: '[PREENCHER]', status: 'Em breve', art: 'anchor' },
